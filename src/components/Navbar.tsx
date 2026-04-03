@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Search, ShoppingBag, User, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useStore } from '@/lib/store';
+import { Button } from '@/components/ui/button';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -40,7 +41,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <button className="text-muted-foreground hover:text-foreground transition-colors">
             <Search className="w-5 h-5" />
           </button>
@@ -52,6 +53,17 @@ const Navbar = () => {
               </span>
             )}
           </Link>
+          
+          {/* Auth Links - Desktop */}
+          <div className="hidden md:flex items-center gap-2">
+            <Button asChild variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+              <Link href="/signin">Sign In</Link>
+            </Button>
+            <Button asChild size="sm" className="bg-primary hover:bg-primary/90">
+              <Link href="/signup">Sign Up</Link>
+            </Button>
+          </div>
+
           <Link href="/dashboard" className="text-muted-foreground hover:text-foreground transition-colors hidden md:block">
             <User className="w-5 h-5" />
           </Link>
@@ -79,6 +91,25 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            
+            {/* Mobile Auth Links */}
+            <div className="flex flex-col gap-2 pt-4 border-t border-border/50">
+              <Button asChild variant="outline" className="w-full">
+                <Link href="/dashboard" onClick={() => setMobileOpen(false)}>
+                  Dashboard
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="w-full">
+                <Link href="/signin" onClick={() => setMobileOpen(false)}>
+                  Sign In
+                </Link>
+              </Button>
+              <Button asChild className="w-full bg-primary hover:bg-primary/90">
+                <Link href="/signup" onClick={() => setMobileOpen(false)}>
+                  Sign Up
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       )}
