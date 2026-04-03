@@ -20,21 +20,21 @@ const AdminUsers = () => {
   return (
     <AdminLayout title="Users">
       <div className="space-y-6">
-        <div className="flex items-center gap-2 bg-secondary rounded-lg px-3 py-2 w-full sm:w-80">
-          <Search className="w-4 h-4 text-muted-foreground" />
+        <div className="flex items-center gap-2 bg-gray-100 dark:bg-slate-800 rounded-lg px-3 py-2 w-full sm:w-80 border border-gray-200 dark:border-slate-700">
+          <Search className="w-4 h-4 text-gray-500 dark:text-gray-400" />
           <input
             placeholder="Search users…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none w-full"
+            className="bg-transparent text-sm text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none w-full"
           />
         </div>
 
-        <div className="glass-card overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-muted-foreground text-xs tracking-wide border-b border-border">
+                <tr className="text-gray-600 dark:text-gray-400 text-xs tracking-wide border-b border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/50">
                   <th className="text-left py-3 px-4">Name</th>
                   <th className="text-left py-3 px-4">Email</th>
                   <th className="text-left py-3 px-4 hidden md:table-cell">Joined</th>
@@ -45,21 +45,21 @@ const AdminUsers = () => {
               </thead>
               <tbody>
                 {filtered.map((user) => (
-                  <tr key={user.id} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
+                  <tr key={user.id} className="border-b border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">
+                        <div className="w-8 h-8 rounded-full bg-[#00AEEF]/20 dark:bg-[#00AEEF]/30 flex items-center justify-center text-xs font-bold text-[#003366] dark:text-[#00AEEF]">
                           {user.name.split(' ').map((n) => n[0]).join('')}
                         </div>
-                        <span className="font-medium">{user.name}</span>
+                        <span className="font-medium text-gray-900 dark:text-white">{user.name}</span>
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-muted-foreground">{user.email}</td>
-                    <td className="py-3 px-4 text-muted-foreground hidden md:table-cell">{user.joined}</td>
-                    <td className="py-3 px-4">{user.orders}</td>
-                    <td className="py-3 px-4 font-semibold text-primary">{user.spent}</td>
+                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">{user.email}</td>
+                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400 hidden md:table-cell">{user.joined}</td>
+                    <td className="py-3 px-4 text-gray-900 dark:text-white font-medium">{user.orders}</td>
+                    <td className="py-3 px-4 font-semibold text-[#00AEEF]">{user.spent}</td>
                     <td className="py-3 px-4">
-                      <button className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors">
+                      <button className="p-1.5 rounded-md text-gray-600 dark:text-gray-400 hover:text-[#003366] dark:hover:text-[#00AEEF] hover:bg-gray-100 dark:hover:bg-slate-600 transition-colors">
                         <Eye className="w-3.5 h-3.5" />
                       </button>
                     </td>

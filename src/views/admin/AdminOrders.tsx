@@ -28,21 +28,21 @@ const AdminOrders = () => {
   return (
     <AdminLayout title="Order Management">
       <div className="space-y-6">
-        <div className="flex items-center gap-2 bg-secondary rounded-lg px-3 py-2 w-full sm:w-80">
-          <Search className="w-4 h-4 text-muted-foreground" />
+        <div className="flex items-center gap-2 bg-gray-100 dark:bg-slate-800 rounded-lg px-3 py-2 w-full sm:w-80 border border-gray-200 dark:border-slate-700">
+          <Search className="w-4 h-4 text-gray-500 dark:text-gray-400" />
           <input
             placeholder="Search orders…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none w-full"
+            className="bg-transparent text-sm text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none w-full"
           />
         </div>
 
-        <div className="glass-card overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-muted-foreground text-xs tracking-wide border-b border-border">
+                <tr className="text-gray-600 dark:text-gray-400 text-xs tracking-wide border-b border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700/50">
                   <th className="text-left py-3 px-4">Order ID</th>
                   <th className="text-left py-3 px-4">Customer</th>
                   <th className="text-left py-3 px-4">Product</th>
@@ -54,32 +54,32 @@ const AdminOrders = () => {
               </thead>
               <tbody>
                 {filtered.map((order) => (
-                  <tr key={order.id} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
-                    <td className="py-3 px-4 font-medium">{order.id}</td>
+                  <tr key={order.id} className="border-b border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors">
+                    <td className="py-3 px-4 font-medium text-gray-900 dark:text-white">{order.id}</td>
                     <td className="py-3 px-4">
                       <div>
-                        <p>{order.customer}</p>
-                        <p className="text-xs text-muted-foreground">{order.email}</p>
+                        <p className="text-gray-900 dark:text-white">{order.customer}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{order.email}</p>
                       </div>
                     </td>
-                    <td className="py-3 px-4">{order.product}</td>
-                    <td className="py-3 px-4 text-xs text-muted-foreground hidden lg:table-cell max-w-[200px] truncate">
+                    <td className="py-3 px-4 text-gray-900 dark:text-gray-100">{order.product}</td>
+                    <td className="py-3 px-4 text-xs text-gray-600 dark:text-gray-400 hidden lg:table-cell max-w-[200px] truncate">
                       {order.customization}
                     </td>
-                    <td className="py-3 px-4 font-semibold">{order.amount}</td>
-                    <td className="py-3 px-4 text-muted-foreground hidden md:table-cell">{order.date}</td>
+                    <td className="py-3 px-4 font-semibold text-[#00AEEF]">{order.amount}</td>
+                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400 hidden md:table-cell">{order.date}</td>
                     <td className="py-3 px-4">
                       <select
                         value={statuses[order.id]}
                         onChange={(e) => setStatuses((p) => ({ ...p, [order.id]: e.target.value }))}
-                        className={`text-xs px-2.5 py-1 rounded-full font-medium border-none focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer ${
-                          statuses[order.id] === 'Delivered' ? 'bg-green-500/10 text-green-400' :
-                          statuses[order.id] === 'Processing' ? 'bg-primary/10 text-primary' :
-                          'bg-orange-500/10 text-orange-400'
+                        className={`text-xs px-2.5 py-1 rounded-full font-medium border-0 focus:outline-none focus:ring-2 focus:ring-[#00AEEF]/50 cursor-pointer transition-colors ${
+                          statuses[order.id] === 'Delivered' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' :
+                          statuses[order.id] === 'Processing' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' :
+                          'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400'
                         }`}
                       >
                         {statusOptions.map((s) => (
-                          <option key={s} value={s} className="bg-card text-foreground">{s}</option>
+                          <option key={s} value={s}>{s}</option>
                         ))}
                       </select>
                     </td>

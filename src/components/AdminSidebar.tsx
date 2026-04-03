@@ -23,18 +23,20 @@ const AdminSidebar = () => {
 
   return (
     <aside
-      className={`sticky top-0 h-screen flex flex-col border-r border-border transition-all duration-300 ${
+      className={`sticky top-0 h-screen flex flex-col border-r border-gray-200 dark:border-slate-700 transition-all duration-300 bg-white dark:bg-slate-900 ${
         collapsed ? 'w-16' : 'w-60'
       }`}
-      style={{ background: 'hsl(220 15% 6%)' }}
     >
-      <div className="flex items-center justify-between h-16 px-4 border-b border-border">
+      <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200 dark:border-slate-700">
         {!collapsed && (
-          <span className="text-sm font-bold tracking-wider gold-text">LUXESHADE</span>
+          <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
+            <div className="w-8 h-8 bg-[#00AEEF] rounded-lg flex items-center justify-center text-white font-bold text-lg">Z</div>
+            <span className="text-sm font-black tracking-tighter text-[#003366] dark:text-white">ZEE OPTICS</span>
+          </Link>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors ml-auto"
+          className="p-1.5 rounded-md text-gray-600 dark:text-gray-400 hover:text-[#003366] dark:hover:text-[#00AEEF] hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors ml-auto"
         >
           {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
         </button>
@@ -49,8 +51,8 @@ const AdminSidebar = () => {
               href={link.path}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                 active
-                  ? 'bg-primary/10 text-primary'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
+                  ? 'bg-[#00AEEF]/10 text-[#003366] dark:bg-[#00AEEF]/20 dark:text-[#00AEEF]'
+                  : 'text-gray-700 dark:text-gray-300 hover:text-[#003366] dark:hover:text-[#00AEEF] hover:bg-gray-100 dark:hover:bg-slate-800'
               }`}
             >
               <link.icon className="w-4 h-4 shrink-0" />
@@ -60,10 +62,10 @@ const AdminSidebar = () => {
         })}
       </nav>
 
-      <div className="p-2 border-t border-border">
+      <div className="p-2 border-t border-gray-200 dark:border-slate-700">
         <Link
           href="/"
-          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
+          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:text-[#003366] dark:hover:text-[#00AEEF] hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
         >
           <LogOut className="w-4 h-4 shrink-0" />
           {!collapsed && <span>Back to Store</span>}
