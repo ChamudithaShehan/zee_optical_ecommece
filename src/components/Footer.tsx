@@ -1,50 +1,90 @@
 import Link from 'next/link';
-import { Instagram, Twitter, Facebook, Mail } from 'lucide-react';
+import { Instagram, Twitter, Facebook, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => (
-  <footer className="border-t border-border/50 bg-secondary/30">
-    <div className="container-luxury section-padding">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+  <footer className="bg-[#003366] text-white">
+    <div className="container-luxury px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        {/* Brand */}
         <div>
-          <h3 className="text-lg font-bold tracking-wider gold-text mb-4">LUXESHADE</h3>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Premium custom sunglasses crafted with precision. Design your perfect pair today.
+          <Link href="/" className="flex items-center gap-2 mb-5">
+            <div className="w-9 h-9 bg-[#00AEEF] rounded-lg flex items-center justify-center text-white font-bold text-lg">Z</div>
+            <span className="text-xl font-black tracking-tight">ZEE OPTICS</span>
+          </Link>
+          <p className="text-sm text-white/60 leading-relaxed mb-5 max-w-xs">
+            Premium eyewear and clinical eye care services. Precision meets style at every Zee Optics location.
           </p>
-        </div>
-        <div>
-          <h4 className="text-sm font-semibold text-foreground mb-4 tracking-wide">SHOP</h4>
-          <div className="flex flex-col gap-2">
-            {['All Frames', 'Aviator', 'Round', 'Sport', 'Custom'].map((item) => (
-              <Link key={item} href="/shop" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                {item}
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h4 className="text-sm font-semibold text-foreground mb-4 tracking-wide">COMPANY</h4>
-          <div className="flex flex-col gap-2">
-            {['About Us', 'Contact', 'Careers', 'Press'].map((item) => (
-              <Link key={item} href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                {item}
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h4 className="text-sm font-semibold text-foreground mb-4 tracking-wide">CONNECT</h4>
-          <div className="flex gap-4 mb-4">
-            {[Instagram, Twitter, Facebook, Mail].map((Icon, i) => (
-              <a key={i} href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Icon className="w-5 h-5" />
+          <div className="flex gap-3">
+            {[Instagram, Twitter, Facebook].map((Icon, i) => (
+              <a key={i} href="#" className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#00AEEF]/30 flex items-center justify-center transition-colors">
+                <Icon className="w-4 h-4 text-white/70" />
               </a>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground">support@luxeshade.com</p>
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h4 className="text-sm font-bold tracking-wider text-[#00AEEF] mb-5 uppercase">Quick Links</h4>
+          <div className="flex flex-col gap-3">
+            {[
+              { name: 'Shop Frames', href: '/shop' },
+              { name: 'Eye Testing', href: '#eye-test' },
+              { name: 'Store Locator', href: '#' },
+              { name: 'Book Appointment', href: '#' },
+            ].map((item) => (
+              <Link key={item.name} href={item.href} className="text-sm text-white/60 hover:text-[#00AEEF] transition-colors font-medium">
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Company */}
+        <div>
+          <h4 className="text-sm font-bold tracking-wider text-[#00AEEF] mb-5 uppercase">Company</h4>
+          <div className="flex flex-col gap-3">
+            {[
+              { name: 'About Us', href: '/about' },
+              { name: 'Careers', href: '#' },
+              { name: 'Privacy Policy', href: '/privacy' },
+              { name: 'Terms & Conditions', href: '/terms' },
+            ].map((item) => (
+              <Link key={item.name} href={item.href} className="text-sm text-white/60 hover:text-[#00AEEF] transition-colors font-medium">
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h4 className="text-sm font-bold tracking-wider text-[#00AEEF] mb-5 uppercase">Contact Us</h4>
+          <div className="flex flex-col gap-4">
+            <div className="flex items-start gap-3">
+              <MapPin className="w-4 h-4 text-[#00AEEF] mt-0.5 flex-shrink-0" />
+              <span className="text-sm text-white/60">1234 Medical Center Blvd, Suite 100</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Phone className="w-4 h-4 text-[#00AEEF] flex-shrink-0" />
+              <span className="text-sm text-white/60">+1 (555) 123-4567</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Mail className="w-4 h-4 text-[#00AEEF] flex-shrink-0" />
+              <span className="text-sm text-white/60">hello@zeeoptics.com</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="border-t border-border/50 mt-12 pt-8 text-center">
-        <p className="text-xs text-muted-foreground">© 2026 LuxeShade. All rights reserved.</p>
+
+      {/* Bottom bar */}
+      <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p className="text-xs text-white/40">© 2026 Zee Optics. All rights reserved.</p>
+        <div className="flex items-center gap-6">
+          {['Privacy', 'Terms', 'Cookies'].map((item) => (
+            <Link key={item} href="#" className="text-xs text-white/40 hover:text-[#00AEEF] transition-colors">{item}</Link>
+          ))}
+        </div>
       </div>
     </div>
   </footer>

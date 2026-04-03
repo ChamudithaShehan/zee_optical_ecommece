@@ -1,3 +1,5 @@
+"use client";
+
 import UserDashboardLayout from '@/components/UserDashboardLayout';
 import { Eye } from 'lucide-react';
 

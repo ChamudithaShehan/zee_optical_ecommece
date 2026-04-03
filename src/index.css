@@ -5,96 +5,122 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @layer base {
+  /* ── Light Theme ── */
   :root {
-    --background: 220 15% 8%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 100%;
+    --foreground: 210 100% 15%;
 
-    --card: 220 15% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 100% 15%;
 
-    --popover: 220 15% 12%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 100% 15%;
 
-    --primary: 43 74% 49%;
-    --primary-foreground: 220 15% 8%;
+    --primary: 210 100% 20%;          /* #003366 Deep Navy */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 10% 18%;
-    --secondary-foreground: 0 0% 85%;
+    --secondary: 196 100% 47%;        /* #00AEEF Cyan */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 10% 16%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 15% 46%;
 
-    --accent: 210 100% 55%;
+    --accent: 196 100% 47%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 10% 20%;
-    --input: 220 10% 20%;
-    --ring: 43 74% 49%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 196 100% 47%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    --sidebar-background: 220 15% 6%;
-    --sidebar-foreground: 0 0% 85%;
-    --sidebar-primary: 43 74% 49%;
-    --sidebar-primary-foreground: 220 15% 8%;
-    --sidebar-accent: 220 10% 14%;
-    --sidebar-accent-foreground: 0 0% 85%;
-    --sidebar-border: 220 10% 16%;
-    --sidebar-ring: 43 74% 49%;
+    /* Zee Optics custom tokens */
+    --navy: #003366;
+    --cyan: #00AEEF;
+    --hero-overlay: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 60%, transparent 100%);
+    --shadow-cyan: 0 10px 30px rgba(0, 174, 239, 0.15);
+    --shadow-navy: 0 10px 30px rgba(0, 51, 102, 0.12);
+  }
 
-    --glass-bg: 220 15% 12% / 0.6;
-    --glass-border: 0 0% 100% / 0.08;
-    --gold-gradient: linear-gradient(135deg, hsl(43 74% 49%), hsl(38 80% 60%));
-    --dark-gradient: linear-gradient(180deg, hsl(220 15% 10%), hsl(220 15% 6%));
-    --hero-overlay: linear-gradient(135deg, hsl(220 15% 8% / 0.85), hsl(220 15% 8% / 0.4));
-    --shadow-gold: 0 0 30px hsl(43 74% 49% / 0.15);
-    --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.4);
+  /* ── Dark Theme ── */
+  .dark {
+    --background: 222 47% 5%;         /* deep slate */
+    --foreground: 210 40% 96%;
+
+    --card: 222 40% 8%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 40% 8%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 196 100% 47%;          /* Cyan becomes primary in dark */
+    --primary-foreground: 222 47% 5%;
+
+    --secondary: 210 100% 20%;        /* Navy becomes secondary in dark */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 222 35% 14%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 196 100% 47%;
+    --accent-foreground: 222 47% 5%;
+
+    --destructive: 0 62% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 196 100% 47%;
+
+    --hero-overlay: linear-gradient(90deg, hsl(222 47% 5% / 0.95) 0%, hsl(222 47% 5% / 0.7) 60%, transparent 100%);
+    --shadow-cyan: 0 10px 40px rgba(0, 174, 239, 0.2);
+    --shadow-navy: 0 10px 40px rgba(0, 0, 0, 0.4);
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  * { @apply border-border; }
+
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+  .dark html, html.dark {
+    color-scheme: dark;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
 @layer components {
+  /* Glass card */
   .glass-card {
     @apply rounded-xl border;
-    background: hsl(var(--glass-bg));
-    border-color: hsl(var(--glass-border));
+    background: rgba(255,255,255,0.8);
+    border-color: rgba(0,51,102,0.08);
     backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-navy);
+  }
+  .dark .glass-card {
+    background: rgba(15, 23, 42, 0.8);
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: var(--shadow-navy);
   }
 
-  .gold-text {
-    background: var(--gold-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .gold-border {
-    border-image: var(--gold-gradient) 1;
-  }
-
+  /* Hover lift */
   .hover-lift {
     @apply transition-all duration-300 ease-out;
   }
   .hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-elevated);
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-navy);
   }
 
   .section-padding {
@@ -104,26 +130,33 @@
   .container-luxury {
     @apply max-w-7xl mx-auto;
   }
-}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* Cyan gradient text */
+  .cyan-text {
+    background: linear-gradient(135deg, #00AEEF, #0074cc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animated float */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 }
 
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+}
+
+/* ── Keyframes ── */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -131,3 +164,18 @@
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Animation utilities */
+.animate-fade-up { animation: fade-up 0.6s ease-out both; }
+.animate-scale-in { animation: scale-in 0.4s ease-out both; }
+.animate-slide-right { animation: slide-right 0.5s ease-out both; }

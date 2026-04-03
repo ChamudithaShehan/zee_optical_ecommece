@@ -1,3 +1,5 @@
+"use client";
+
 import UserDashboardLayout from '@/components/UserDashboardLayout';
 import { Button } from '@/components/ui/button';
 import { Camera } from 'lucide-react';
